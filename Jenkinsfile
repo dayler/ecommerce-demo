@@ -31,6 +31,7 @@ stage("stage master") {
 						script {
 							node {
 								println "inner stage 2"
+								emailext body: '${BUILD_NUMBER} The pipeline was executed successfully. ${PROJECT_NAME}', subject: 'The pipeline was executed successfully', to: 'jlccx@live.com'
 							}	
 						}
 					}
