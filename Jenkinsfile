@@ -77,7 +77,7 @@ stage("stage master") {
 				}
 				finally {
 					node {
-						println "Iniciando el deploy a produccion."
+						println "Iniciando el deploy a produccion. "
 					}
 				}
 				
