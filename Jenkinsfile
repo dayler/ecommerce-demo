@@ -17,6 +17,9 @@ stage("stage master") {
 						script {
 							node {
 								println "inner stage 1"
+								def MIN_VERSION=bat label: 'mylabel', returnStdout: true, script: 'git rev-parse --short HEAD'
+								//MIN_VERSION=sh(returnStdout: true, script: "git rev-parse --short HEAD").trim()
+								println "La version actual es: ${MIN_VERSION}"
 							}
 
 							
