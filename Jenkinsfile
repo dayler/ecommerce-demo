@@ -96,7 +96,7 @@ stage("stage master") {
     	steps {
     		script {
           		node {
-        			println "Mi segundo stage esta en ejecucion. KeyID: $MyKeyID"
+        			println "Mi segundo stage esta en ejecucion. KeyID: $MyKeyID" 
           		}
         	}
     	}
