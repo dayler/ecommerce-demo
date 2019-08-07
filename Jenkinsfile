@@ -1,6 +1,6 @@
 import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
 
-timestamps {
+
 
 pipeline {
 
@@ -9,7 +9,7 @@ pipeline {
 	environment {
 	    MyKeyID="myCustomValue1"
 	}
-	
+	timestamps {
 	stages {
 		
 		
