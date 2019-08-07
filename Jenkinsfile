@@ -20,6 +20,7 @@ stage("stage master") {
 								def MIN_VERSION=bat returnStdout: true, script: 'git rev-parse --short HEAD'
 								//MIN_VERSION=sh(returnStdout: true, script: "git rev-parse --short HEAD").trim()
 								println "La version actual es: ${MIN_VERSION}"
+								writeFile file: 'version.txt', text: '${MIN_VERSION}'
 							}
 
 							
