@@ -13,10 +13,8 @@ pipeline {
 stage("stage master") {
 		steps {
     			script {
-					
 					stage("inner stage 1") {
 						script {
-						
 							node {
 								println "inner stage"
 							}
@@ -27,12 +25,9 @@ stage("stage master") {
 
 					stage("inner stage 2") {
 						script {
-						
 							node {
 								println "inner stage"
-							}
-
-							
+							}	
 						}
 					}
 							
