@@ -9,6 +9,8 @@ pipeline {
 	}
 	
 	stages {
+		
+		timestamps {
 	
 stage("stage master") {
 		steps {
@@ -101,7 +103,7 @@ stage("stage master") {
         	}
     	}
 	}
-	    
+		}
 }
 
 }
