@@ -46,7 +46,10 @@ stage("stage master") {
 						    highlightStage("Descargar codigo fuente")
                 checkout scm
         				println "Mi primer stage. MyKeyID value es: ${MyKeyID}"
-                bat "npm install"
+                bat """
+				npm install
+				npm test
+				"""
           		}
         	}
     	}
