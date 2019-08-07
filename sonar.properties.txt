@@ -1,0 +1,14 @@
+# The default projectKey used will be "xxx"
+# The projectKey will be replaced by the parameter "${REPO_NAME:-$JOB_BASE_NAME}"
+sonar.projectKey=ecommerce
+# The default projectName used will be "xxx"
+# The projectName will be replaced by the parameter "${REPO_NAME:-$JOB_BASE_NAME}"
+sonar.projectName=ecommerce
+# The default projectVersion used will be 1.0.0
+# The projectVersion will be replaced by the parameter "${VERSION}"
+sonar.projectVersion=1.0.0
+sonar.sources=.
+#sonar.inclusions=src/main/**
+#sonar.java.binaries=target/classes
+#sonar.java.coveragePlugin=jacoco
+#sonar.jacoco.reportPaths=target/jacoco-data/jacoco-unit.exec
