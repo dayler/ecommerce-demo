@@ -1,5 +1,7 @@
 import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
 
+timestamps {
+
 pipeline {
 
 	agent none
@@ -10,7 +12,7 @@ pipeline {
 	
 	stages {
 		
-		timestamps {
+		
 	
 stage("stage master") {
 		steps {
