@@ -9,7 +9,7 @@ pipeline {
 	environment {
 	    MyKeyID="myCustomValue1"
 	}
-	timestamps {
+	
 	stages {
 		
 		
@@ -34,9 +34,11 @@ stage("stage master") {
 					stage("inner stage 2") {
 						script {
 							node {
+								timestamps {
 								println "inner stage 2"
 								emailext body: '${BUILD_NUMBER} The pipeline was executed successfully. ${PROJECT_NAME}', subject: 'The pipeline was executed successfully', to: 'jlccx@live.com'
-							}	
+								}
+								}	
 						}
 					}
 							
@@ -103,7 +105,7 @@ stage("stage master") {
         			println "Mi segundo stage esta en ejecucion. KeyID: $MyKeyID" 
           		}
         	}
-    	}
+    	
 	}
 		}
 }
