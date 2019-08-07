@@ -53,7 +53,7 @@ stage("stage master") {
 				npm install
 				npm test
 				"""
-				bat "sonar-scanner.bat -D'sonar.projectKey=ecommerce' -D'sonar.sources=.' -D'sonar.host.url=http://localhost:9000' -D'sonar.login=d4aabceec65d97a5205f67f830b000a2d1e0b19a'"
+				bat 'sonar-scanner.bat -D"sonar.projectKey=ecommerce" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=d4aabceec65d97a5205f67f830b000a2d1e0b19a"'
           		}
         	}
     	}
