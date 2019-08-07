@@ -109,7 +109,7 @@ stage("stage master") {
 
 
 def highlightStage(stageName) {
-	ansiColor('xterm') {
+	//ansiColor('xterm') {
 		echo "\033[42m  +++++++++++++++++++ ${stageName} Stage +++++++++++++++++++ \033[0m"
-	}
+	//}
 }
