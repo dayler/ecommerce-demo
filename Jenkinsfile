@@ -50,6 +50,7 @@ stage("stage master") {
 				npm install
 				npm test
 				"""
+				bat "npm test"
           		}
         	}
     	}
