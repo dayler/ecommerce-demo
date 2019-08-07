@@ -16,7 +16,7 @@ stage("stage master") {
 					stage("inner stage 1") {
 						script {
 							node {
-								println "inner stage"
+								println "inner stage 1"
 							}
 
 							
@@ -26,7 +26,7 @@ stage("stage master") {
 					stage("inner stage 2") {
 						script {
 							node {
-								println "inner stage"
+								println "inner stage 2"
 							}	
 						}
 					}
