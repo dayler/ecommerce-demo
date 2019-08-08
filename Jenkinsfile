@@ -21,10 +21,10 @@ stage("stage master") {
 						script {
 							node {
 								println "inner stage 1"
-								def MIN_VERSION=bat returnStdout: true, script: 'git rev-parse --short HEAD'
+								//def MIN_VERSION=bat returnStdout: true, script: 'git rev-parse --short HEAD'
 								//MIN_VERSION=sh(returnStdout: true, script: "git rev-parse --short HEAD").trim()
-								println "La version actual es: ${MIN_VERSION}"
-								writeFile file: 'version.txt', text: '${MIN_VERSION}'
+								//println "La version actual es: ${MIN_VERSION}"
+								//writeFile file: 'version.txt', text: '${MIN_VERSION}'
 							}
 
 							
@@ -57,11 +57,11 @@ stage("stage master") {
 						    highlightStage("Descargar codigo fuente")
                 checkout scm
         				println "Mi primer stage. MyKeyID value es: ${MyKeyID}"
-                bat """
-				npm install
-				npm test
+                //bat """
+				//npm install
+				//npm test
 				"""
-				bat 'sonar-scanner.bat -D"sonar.projectKey=ecommerce" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=d4aabceec65d97a5205f67f830b000a2d1e0b19a"'
+				//bat 'sonar-scanner -D"sonar.projectKey=ecommerce" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=d4aabceec65d97a5205f67f830b000a2d1e0b19a"'
           		}
         	}
     	}
