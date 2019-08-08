@@ -1,6 +1,7 @@
 'use strict';
 
 /* import modules */
+/* this is other comment */
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
