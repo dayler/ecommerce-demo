@@ -16,7 +16,7 @@ pipeline {
                           println "Descargar codigo fuente"
 			  dir("myFolder") {
 				  checkout scm
-				  bat """
+				  sh """
 					npm install
 				    """
 			  }
@@ -36,7 +36,7 @@ pipeline {
                       timestamps  {
                           unstash "myFolder"
 				dir("myFolder") {
-        			 bat """
+        			 sh """
 				 	dir
 					sonar-scanner -Dproject.settings=./sonar-project.properties
 				    """	
@@ -54,7 +54,7 @@ pipeline {
           		node {
 				unstash "${stashName}"
 				dir("myFolder") {
-        			 bat """
+        			 sh """
 					npm start
 				    """	
 				}
