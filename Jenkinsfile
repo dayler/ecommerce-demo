@@ -60,7 +60,7 @@ pipeline {
 					docker login
 					docker build -t devops-course:my-etiqueta .
 					docker tag devops-course:my-etiqueta daylersalazar/devops-course:my-etiqueta
-					docker push daylersalazar/devops-course:tagname
+					docker push daylersalazar/devops-course:my-etiqueta
 				    """	
 				}
                       }
