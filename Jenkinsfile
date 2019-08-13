@@ -38,7 +38,29 @@ pipeline {
 				dir("myFolder") {
         			 sh """
 				 	dir
-					sonar-scanner -Dproject.settings=./sonar-project.properties
+				    """	
+				}
+                      }
+        			
+          		}
+        	}
+    	}
+	}
+		
+		stage('Contenedor Docker') {
+    	steps {
+    		script {
+          		node {
+                      timestamps  {
+                          unstash "myFolder"
+				dir("myFolder") {
+        			 bat """
+				 	dir
+					
+					docker login
+					docker build -t devops-course:my-etiqueta .
+					docker tag devops-course:my-etiqueta daylersalazar/devops-course:my-etiqueta
+					docker push daylersalazar/devops-course:tagname
 				    """	
 				}
                       }
