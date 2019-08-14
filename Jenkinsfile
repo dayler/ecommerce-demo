@@ -1,6 +1,10 @@
 pipeline {
 
 	agent none
+	
+	//agent {
+        	//docker { image 'node:7-alpine' }
+    	//}
 
 	environment {
 	    MyKeyID="myCustomValue1"
@@ -9,19 +13,28 @@ pipeline {
 	stages {
 	
 	stage('Init') {
+	//agent {
+                //docker { image 'node:7-alpine' }
+            //}
     	steps {
     		script {
           		node {
-                      timestamps  {
-                          println "Descargar codigo fuente"
-			  dir("myFolder") {
-				  checkout scm
-				  sh """
-					npm install
-				    """
-			  }
-			    stash name: "myFolder", include: "myFolder/**"
-                      }
+				docker.withRegistry('https://registry.hub.docker.com/',"1985") {
+					docker.image('daylersalazar/nodejs:pipeline').inside("-u root:root") {
+					      timestamps  {
+						  println "Descargar codigo fuente"
+							  dir("myFolder") {
+						
+							  checkout scm
+							  sh """
+							  	npm --version
+								npm install
+								"""
+							     }
+							 }
+				  		}
+				   		 stash name: "myFolder", include: "myFolder/**"
+					}
         			
           		}
         	}
@@ -30,55 +43,66 @@ pipeline {
 		
 		
 	stage('Analisis de codigo con Sonar') {
-    	steps {
-    		script {
-          		node {
-                      timestamps  {
-                          unstash "myFolder"
-				dir("myFolder") {
-        			 sh """
-				 	dir
-				    """	
+		steps {
+			script {
+				node {
+					docker.withRegistry('https://registry.hub.docker.com/',"1985") {
+						docker.image('daylersalazar/nodejs:mi-etiqueta5test').inside("-u root:root") {
+						      timestamps  {
+							  unstash "myFolder"
+								dir("anotherFolder") {
+								 sh """
+								 	echo "Analisis de codigo con Sonar"
+									pwd
+								    """	
+								}
+						      }
+						}
+					}
+
 				}
-                      }
-        			
-          		}
-        	}
-    	}
+			}
+		}
 	}
 		
-		stage('Contenedor Docker') {
-    	steps {
-    		script {
-          		node {
-                      timestamps  {
-                          unstash "myFolder"
-				dir("myFolder") {
-        			 bat """
-				 	dir
-					
-					docker login
-					docker build -t devops-course:my-etiqueta .
-					docker tag devops-course:my-etiqueta daylersalazar/devops-course:my-etiqueta
-					docker push daylersalazar/devops-course:my-etiqueta
-				    """	
+	stage('Contenedor Docker') {
+		steps {
+			script {
+				node {
+					docker.withRegistry('https://registry.hub.docker.com/',"1985") {
+						docker.image('daylersalazar/nodejs:mi-etiqueta5test').inside("-u root:root") {
+						      timestamps  {
+							  unstash "myFolder"
+								dir("myFolder") {
+								 sh """
+									 #docker login
+									 #docker build -t primer-docker2:my-etiqueta .
+									 #docker tag primer-docker2:my-etiqueta 98640321id/primer-docker:my-etiqueta
+									 #docker push primer-docker:my-etiqueta
+								    """	
+								}
+						      }
+						}
+					}
+
 				}
-                      }
-        			
-          		}
-        	}
-    	}
+			}
+		}
 	}
 	
 	stage('Deploy') {
     	steps {
     		script {
           		node {
-				unstash "${stashName}"
-				dir("myFolder") {
-        			 sh """
-					npm start
-				    """	
+				docker.withRegistry('https://registry.hub.docker.com/',"1985") {
+					docker.image('daylersalazar/nodejs:mi-etiqueta5test').inside("-u root:root") {
+						unstash "${stashName}"
+						dir("myFolder") {
+						 sh """
+							npm start
+						    """	
+						}
+					}
 				}
           		}
         	}
