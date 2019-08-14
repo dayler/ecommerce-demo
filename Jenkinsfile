@@ -20,7 +20,7 @@ pipeline {
     		script {
           		node {
 				docker.withRegistry('https://registry.hub.docker.com/',"1985") {
-					docker.image('daylersalazar/nodejs:pipeline').inside("-u root:root") {
+					docker.image('daylersalazar/martes-nodejs:pipeline').inside("-u root:root") {
 					      timestamps  {
 						  println "Descargar codigo fuente"
 							  dir("myFolder") {
@@ -47,7 +47,7 @@ pipeline {
 			script {
 				node {
 					docker.withRegistry('https://registry.hub.docker.com/',"1985") {
-						docker.image('daylersalazar/nodejs:mi-etiqueta5test').inside("-u root:root") {
+						docker.image('daylersalazar/martes-nodejs:mi-etiqueta5test').inside("-u root:root") {
 						      timestamps  {
 							  unstash "myFolder"
 								dir("anotherFolder") {
@@ -70,7 +70,7 @@ pipeline {
 			script {
 				node {
 					docker.withRegistry('https://registry.hub.docker.com/',"1985") {
-						docker.image('daylersalazar/nodejs:mi-etiqueta5test').inside("-u root:root") {
+						docker.image('daylersalazar/martes-nodejs:mi-etiqueta5test').inside("-u root:root") {
 						      timestamps  {
 							  unstash "myFolder"
 								dir("myFolder") {
@@ -95,7 +95,7 @@ pipeline {
     		script {
           		node {
 				docker.withRegistry('https://registry.hub.docker.com/',"1985") {
-					docker.image('daylersalazar/nodejs:mi-etiqueta5test').inside("-u root:root") {
+					docker.image('daylersalazar/martes-nodejs:mi-etiqueta5test').inside("-u root:root") {
 						unstash "${stashName}"
 						dir("myFolder") {
 						 sh """
